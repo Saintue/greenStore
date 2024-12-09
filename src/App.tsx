@@ -3,6 +3,7 @@ import MainLayout from "./layouts/MainLayout.tsx";
 import MainPage from "./pages/MainPage.tsx";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import PageNotFound from "./pages/PageNotFound.tsx";
+import CalculatorPage from "./pages/CalculatorPage.tsx";
 
 function App() {
   return (
@@ -11,6 +12,7 @@ function App() {
       <Routes>
         <Route path="/" element={<MainLayout />}>
           <Route path="/" element={<MainPage />}></Route>
+          <Route path="/calculator" element={<CalculatorPage />}></Route>
             <Route path="*" element={<PageNotFound/>}></Route>
         </Route>
       </Routes>
