@@ -1,6 +1,8 @@
-function ProductCard() {
-    return(<div className="bg-red-600 h-28 w-3/4 ml-3 last:mr-3">
-s
+import {Product} from "../interfaces/Product.ts";
+
+function ProductCard({product}: {product: Product}) {
+    return(<div className="bg-red-600 h-80 w-1/4 mb-5 ml-3">
+        {product.id}
     </div>)
 }
 export default ProductCard
