@@ -4,6 +4,7 @@ import MainPage from "./pages/MainPage.tsx";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import PageNotFound from "./pages/PageNotFound.tsx";
 import CalculatorPage from "./pages/CalculatorPage.tsx";
+import ProductPage from "./pages/ProductPage.tsx";
 
 function App() {
   return (
@@ -12,6 +13,7 @@ function App() {
       <Routes>
         <Route path="/" element={<MainLayout />}>
           <Route path="/" element={<MainPage />}></Route>
+          <Route path="/products/:id" element={<ProductPage/>}></Route>
           <Route path="/calculator" element={<CalculatorPage />}></Route>
             <Route path="*" element={<PageNotFound/>}></Route>
         </Route>

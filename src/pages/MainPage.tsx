@@ -6,10 +6,11 @@ function MainPage() {
   const products = useProductStore((state ) => state.products);
   const fetchProducts = useProductStore((state) => state.fetchProducts);
   const isLoading = useProductStore((state) => state.isLoading);
+  const errors = useProductStore((state) => state.errors);
   const loadProducts = useProductStore((state) => state.setProducts);
   useEffect(() => {
-    console.log(isLoading);
     fetchProducts();
+    console.log(errors);
   }, []);
   function handleClick(moreProducts:Product[]) {
       console.log("joasd");
@@ -17,6 +18,9 @@ function MainPage() {
   }
   if (isLoading) {
     return <div>Loading...</div>;
+  }
+  if (errors.length > 0) {
+      return <div>{errors[0]}</div>
   }
   return (
     <div className="w-full">
