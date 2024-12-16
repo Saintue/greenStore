@@ -8,18 +8,18 @@ import ProductPage from "./pages/ProductPage.tsx";
 
 function App() {
   return (
-      <div className="w-full h-full bg-amber-200">
-    <Router>
-      <Routes>
-        <Route path="/" element={<MainLayout />}>
-          <Route path="/" element={<MainPage />}></Route>
-          <Route path="/products/:id" element={<ProductPage/>}></Route>
-          <Route path="/calculator" element={<CalculatorPage />}></Route>
-            <Route path="*" element={<PageNotFound/>}></Route>
-        </Route>
-      </Routes>
-    </Router>
-      </div>
+    <div className="w-full h-full bg-amber-200">
+      <Router>
+        <Routes>
+          <Route path="/" element={<MainLayout />}>
+            <Route path="/" element={<MainPage />}></Route>
+            <Route path="/products/:id" element={<ProductPage />}></Route>
+            <Route path="/calculator" element={<CalculatorPage />}></Route>
+            <Route path="*" element={<PageNotFound />}></Route>
+          </Route>
+        </Routes>
+      </Router>
+    </div>
   );
 }
 

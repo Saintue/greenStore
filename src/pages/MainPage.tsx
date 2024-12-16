@@ -1,9 +1,9 @@
 import ProductCard from "../components/ProductCard.tsx";
 import { useProductStore } from "../stores/productStore.ts";
 import { useEffect } from "react";
-import {Product} from "../interfaces/Product.ts";
+import { Product } from "../interfaces/Product.ts";
 function MainPage() {
-  const products = useProductStore((state ) => state.products);
+  const products = useProductStore((state) => state.products);
   const fetchProducts = useProductStore((state) => state.fetchProducts);
   const isLoading = useProductStore((state) => state.isLoading);
   const errors = useProductStore((state) => state.errors);
@@ -12,15 +12,14 @@ function MainPage() {
     fetchProducts();
     console.log(errors);
   }, []);
-  function handleClick(moreProducts:Product[]) {
-      console.log("joasd");
-      loadProducts(moreProducts)
+  function handleClick(moreProducts: Product[]) {
+    loadProducts(moreProducts);
   }
   if (isLoading) {
     return <div>Loading...</div>;
   }
   if (errors.length > 0) {
-      return <div>{errors[0]}</div>
+    return <div>{errors[0]}</div>;
   }
   return (
     <div className="w-full">
@@ -29,7 +28,10 @@ function MainPage() {
           <ProductCard product={product}></ProductCard>
         ))}
       </div>
-      <button onClick={()=>handleClick(products)} className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 w-full rounded-full mt-5">
+      <button
+        onClick={() => handleClick(products)}
+        className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 w-full rounded-full mt-5"
+      >
         Load More...
       </button>
     </div>
