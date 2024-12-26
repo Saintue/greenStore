@@ -12,7 +12,7 @@ function Cart() {
     checkout();
   }
   return (
-    <div className="relative overflow-x-auto shadow-md sm:rounded-lg mt-5">
+    <div className="relative overflow-x-auto min-h-32 shadow-md sm:rounded-lg mt-5 mx-5">
       <table className="w-full min-h-32 text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400 bg-gray-50">
         <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-600">
           <tr>

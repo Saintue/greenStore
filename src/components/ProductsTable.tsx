@@ -12,7 +12,7 @@ function ProductsTable({ products }: { products: Product[] }) {
     });
   }
   return (
-    <div className="relative overflow-x-auto shadow-md sm:rounded-lg overflow-y-auto mb-5 h-[600px]">
+    <div className="mx-5 relative overflow-x-auto shadow-md sm:rounded-lg overflow-y-auto mb-5 h-[600px]">
       <table className="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
         <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
           <tr>

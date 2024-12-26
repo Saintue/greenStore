@@ -22,7 +22,7 @@ function CalculatorPage() {
   return (
     <div className="w-full max-w-[1000px]">
       <ProductsTable products={products}></ProductsTable>
-      <h1>Cart</h1>
+      <h1 className="ml-5">Cart</h1>
       <Cart></Cart>
     </div>
   );
