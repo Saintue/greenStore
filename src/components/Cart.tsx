@@ -3,12 +3,8 @@ import { CartProduct } from "../interfaces/CartProduct.ts";
 
 function Cart() {
   const products = useCartStore((state) => state.products);
-  const decProducts = useCartStore((state) => state.decProduct);
   const checkout = useCartStore((state) => state.checkout);
 
-  function handleDec(id: number) {
-    decProducts(id);
-  }
 
   function handleCheckout() {
     checkout();

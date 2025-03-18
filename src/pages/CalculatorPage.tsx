@@ -1,10 +1,8 @@
-import ProductsTable from "../components/ProductsTable.tsx";
 import { useProductStore } from "../stores/productStore.ts";
 import { useEffect } from "react";
 import Cart from "../components/Cart.tsx";
 
 function CalculatorPage() {
-  const products = useProductStore((state) => state.products);
   const fetchProducts = useProductStore((state) => state.fetchProducts);
   const isLoading = useProductStore((state) => state.isLoading);
   const errors = useProductStore((state) => state.errors);

@@ -9,7 +9,6 @@ import SignInPage from "./pages/SignInPage.tsx";
 import SignUpPage from "./pages/SignUpPage.tsx";
 import {useEffect} from "react";
 import {useAuthStore} from "./stores/authStore.ts";
-import ProtectedRoutes from "./utils/ProtectedRoutes.tsx";
 import ProtectedAuth from "./utils/ProtectedAuth.tsx";
 
 function App() {
