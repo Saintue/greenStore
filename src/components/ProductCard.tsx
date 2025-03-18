@@ -1,42 +1,51 @@
 import { Product } from "../interfaces/Product.ts";
 import { NavLink } from "react-router-dom";
+import {useCartStore} from "../stores/cartStore.ts";
 
 function ProductCard({ product }: { product: Product }) {
+  const addProduct = useCartStore((state) => state.setProduct);
+  function handleAdd(product: Product) {
+    addProduct({
+      price: product.price,
+      title: product.title,
+      id: product.id,
+      count: 1,
+    });
+  }
   return (
-    <div className="max-w-sm h-96 mx-1 mb-1 overflow-x-hidden bg-white border border-gray-200 shadow dark:bg-gray-800 dark:border-gray-700">
-      <img
-        className="w-20 my-4 mx-4 h-20 rounded-t-lg object-fill"
-        src={product.image}
-        alt="product image"
-      />
-      <div className="h-[260px] p-5 flex flex-col justify-between">
-        <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
-          {product.title}
-        </h5>
-        <p className="mb-3 font-normal text-gray-700 dark:text-gray-400">
-          {product.description.substring(0, 120) + "..."}
-        </p>
-        <NavLink
-          to={`products/${product.id}`}
-          className="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
-        >
-          Read more
-          <svg
-            className="rtl:rotate-180 w-3.5 h-3.5 ms-2"
-            aria-hidden="true"
-            xmlns="http://www.w3.org/2000/svg"
-            fill="none"
-            viewBox="0 0 14 10"
+    <div
+      className={
+        "h-[278px] w-[254px] bg-white rounded-3xl border-2 border-[#C1BEA8] justify-between flex-col flex mx-5 my-2"
+      }
+    >
+      <div className={"w-[120px] h-[120px] mx-auto items-center flex my-4"}>
+        <img src={product.image} alt="product" className={"w-full h-full"} />
+      </div>
+      <div className={"flex-1"}>
+        <div className="flex justify-center">
+          <NavLink
+            to={`/products/${product.id}`}
+            className={"mx-4 flex h-full text-center"}
           >
-            <path
-              stroke="currentColor"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="2"
-              d="M1 5h12m0 0L9 1m4 4L9 9"
-            />
-          </svg>
-        </NavLink>
+            {product.title.substring(0, 40) + "..."}
+          </NavLink>
+        </div>
+      </div>
+      <div>
+        <div
+          className={
+            "h-16 rounded-b-[21px] w-full bg-[#ABB4A2]  items-center flex justify-between px-2"
+          }
+        >
+          <h5 className={"pl-2 flex justify-center flex-col"}>
+            {product.price}$
+          </h5>
+          <button onClick={() => handleAdd(product)}
+            className={"bg-[#54755A] rounded-[30px] h-12 px-2 text-white"}
+          >
+            Add to cart
+          </button>
+        </div>
       </div>
     </div>
   );

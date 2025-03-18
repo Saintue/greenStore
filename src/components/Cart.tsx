@@ -5,51 +5,125 @@ function Cart() {
   const products = useCartStore((state) => state.products);
   const decProducts = useCartStore((state) => state.decProduct);
   const checkout = useCartStore((state) => state.checkout);
+
   function handleDec(id: number) {
     decProducts(id);
   }
+
   function handleCheckout() {
     checkout();
   }
+
   return (
-    <div className="relative overflow-x-auto min-h-32 shadow-md sm:rounded-lg mt-5 mx-5">
-      <table className="w-full min-h-32 text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400 bg-gray-50">
-        <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-600">
+    <div className="relative  min-h-32 sm:rounded-lg my-5 mx-5">
+      <table className="w-full text-sm text-left rtl:text-right text-gray-500">
+        <thead className="text-xs text-white text-center uppercase bg-[#54755A]">
           <tr>
-            <th>name</th>
-            <th>price per 1</th>
-            <th>count</th>
-            <th>total price</th>
-            <th></th>
+            <th className="border-r-2 border-b-[6px] border-[#C6C3AE] md:w-60">Product Name</th>
+            <th className="border-r-2 border-b-[6px] border-[#C6C3AE] md:w-36">
+              price
+            </th>
+            <th className="border-r-2 border-b-[6px] border-[#C6C3AE] md:w-36 h-10 p-2">
+              count
+            </th>
+            <th className="border-b-[6px] border-[#C6C3AE] md:w-36">total price</th>
           </tr>
         </thead>
-        <tbody
-          className={
-            "text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400"
-          }
-        >
-          {products.map((product: CartProduct) => (
+        <tbody className={"text-xs text-gray-700 uppercase"}>
+          {products.length === 0 ? (
             <tr>
-              <td>{product.title}</td>
-              <td>{product.price}</td>
-              <td>{product.count}</td>
-              <td>{(product.price * product.count).toFixed(2)}</td>
-              <td>
-                <button onClick={() => handleDec(product.id)}>-</button>
+              <td
+                colSpan={3}
+                className="bg-white border-[#C6C3AE] text-center rounded-bl-2xl relative h-20"
+              >
+                cart is empty
+              </td>
+              <td className="bg-white border-[#C6C3AE] border-2 text-center w-48">0</td>
+            </tr>
+          ) : (
+            products.map((product: CartProduct, index: number) => (
+              <tr className="text-center">
+                <td className={`h-20 bg-white border-2 border-[#C6C3AE]`}>
+                  {product.title}
+                </td>
+                <td className="bg-white border-2 border-[#C6C3AE]">
+                  {product.price}
+                </td>
+                <td className="bg-white border-2 border-[#C6C3AE]">
+                  {product.count}
+                </td>
+                {index == 0 ? (
+                    <td
+                    rowSpan={products.length}
+                    className="bg-white border-2 border-[#C6C3AE] w-2"
+                  >
+                    {index == 0
+                      ? products
+                          .reduce((acc, cur) => acc + cur.price * cur.count, 0)
+                          .toFixed(2)
+                      : ""}
+                  </td>
+                ) : (
+                  ""
+                )}
+              </tr>
+            ))
+          )}
+          {products.length === 0 ? (
+            <tr>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td className="bg-[#C6C3AE] rounded-b-2xl text-center h-8">
+                <div className="flex items-center justify-center">
+                  <h2 className="pl-2">checkout:</h2>
+                  <button onClick={() => handleCheckout()} className="px-2">
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      strokeWidth={1.5}
+                      stroke="currentColor"
+                      className="size-12"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        d="m12.75 15 3-3m0 0-3-3m3 3h-7.5M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"
+                      />
+                    </svg>
+                  </button>
+                </div>
               </td>
             </tr>
-          ))}
+          ) : (
+            <tr>
+              <td colSpan={3}></td>
+              <td className="bg-[#C6C3AE] rounded-b-2xl text-center h-8">
+                <div className="flex items-center justify-center">
+                  <h2 className="pl-2">checkout:</h2>
+                  <button onClick={() => handleCheckout()} className="px-2">
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      strokeWidth={1.5}
+                      stroke="currentColor"
+                      className="size-12"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        d="m12.75 15 3-3m0 0-3-3m3 3h-7.5M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"
+                      />
+                    </svg>
+                  </button>
+                </div>
+              </td>
+            </tr>
+          )}
         </tbody>
       </table>
-      <div className="flex justify-between mx-4">
-        <h2>
-          total cost: $
-          {products
-            .reduce((acc, cur) => acc + cur.price * cur.count, 0)
-            .toFixed(2)}
-        </h2>
-        <button onClick={() => handleCheckout()}>checkout</button>
-      </div>
     </div>
   );
 }

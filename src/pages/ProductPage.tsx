@@ -1,9 +1,14 @@
 import { useParams } from "react-router-dom";
 import { useProductStore } from "../stores/productStore.ts";
 import { useEffect } from "react";
+import top from "../assets/10top.png"
+import bot from "../assets/10bot.png"
+import {useCartStore} from "../stores/cartStore.ts";
+import {Product} from "../interfaces/Product.ts";
 
 function ProductPage() {
   const { id } = useParams();
+  const addProduct = useCartStore((state) => state.setProduct);
   const getOneProduct = useProductStore((state) => state.fetchOneProduct);
   const isLoading = useProductStore((state) => state.isLoading);
   const errors = useProductStore((state) => state.errors);
@@ -18,104 +23,66 @@ function ProductPage() {
   if (errors.length > 0) {
     return <div>{errors[0]}</div>;
   }
+  function handleAdd(product: Product) {
+    addProduct({
+      price: product.price,
+      title: product.title,
+      id: product.id,
+      count: 1,
+    });
+  }
 
   return (
-    <div className="bg-gray-100 dark:bg-gray-800 py-8">
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex flex-col md:flex-row -mx-4">
-          <div className="md:flex-1 px-4">
-            <div className="h-[460px] rounded-lg bg-gray-300 dark:bg-gray-700 mb-4">
+    <div className="w-full h-full bg-white flex justify-center">
+      <div className={"w-full h-full"}>
+        <div className="flex flex-col md:flex-row h-full">
+          <div className="relative md:flex-1 bg-white h-full flex flex-col justify-between">
+            <div className="rounded-lg">
               <img
-                className="w-full h-full object-fit"
-                src={product.image}
+                className="w-full object-fit"
+                src={top}
                 alt="Product Image"
               />
             </div>
-            <div className="flex -mx-2 mb-4">
-              <div className="w-1/2 px-2">
-                <button className="w-full bg-gray-900 dark:bg-gray-600 text-white py-2 px-4 rounded-full font-bold hover:bg-gray-800 dark:hover:bg-gray-700">
-                  Add to Cart
-                </button>
+            <div className="w-full h-full flex justify-center items-center">
+              <div className="rounded-lg flex justify-center max-h-[360px] max-w-[360px]">
+                <img
+                  className="p-10 object-fill "
+                  src={product.image}
+                  alt="Product Image"
+                />
               </div>
-              <div className="w-1/2 px-2">
-                <button className="w-full bg-gray-200 dark:bg-gray-700 text-gray-800 dark:text-white py-2 px-4 rounded-full font-bold hover:bg-gray-300 dark:hover:bg-gray-600">
-                  Add to Wishlist
-                </button>
-              </div>
+            </div>
+            <div className="rounded-lg">
+              <img
+                className="w-full object-fill"
+                src={bot}
+                alt="Product Image"
+              />
             </div>
           </div>
-          <div className="md:flex-1 px-4">
-            <h2 className="text-2xl font-bold text-gray-800 dark:text-white mb-2">
-              {product.title}
-            </h2>
-            <p className="text-gray-600 dark:text-gray-300 text-sm mb-4">
-              {product.description}
-            </p>
-            <div className="flex mb-4">
-              <div className="mr-4">
-                <span className="font-bold text-gray-700 dark:text-gray-300">
-                  Price:
-                </span>
-                <span className="text-gray-600 dark:text-gray-300">
-                  ${product.price}
-                </span>
-              </div>
-              <div>
-                <span className="font-bold text-gray-700 dark:text-gray-300">
-                  Availability:
-                </span>
-                <span className="text-gray-600 dark:text-gray-300">
-                  In Stock
-                </span>
-              </div>
-            </div>
-            <div className="mb-4">
-              <span className="font-bold text-gray-700 dark:text-gray-300">
-                Select Color:
-              </span>
-              <div className="flex items-center mt-2">
-                <button className="w-6 h-6 rounded-full bg-gray-800 dark:bg-gray-200 mr-2"></button>
-                <button className="w-6 h-6 rounded-full bg-red-500 dark:bg-red-700 mr-2"></button>
-                <button className="w-6 h-6 rounded-full bg-blue-500 dark:bg-blue-700 mr-2"></button>
-                <button className="w-6 h-6 rounded-full bg-yellow-500 dark:bg-yellow-700 mr-2"></button>
-              </div>
-            </div>
-            <div className="mb-4">
-              <span className="font-bold text-gray-700 dark:text-gray-300">
-                Select Size:
-              </span>
-              <div className="flex items-center mt-2">
-                <button className="bg-gray-300 dark:bg-gray-700 text-gray-700 dark:text-white py-2 px-4 rounded-full font-bold mr-2 hover:bg-gray-400 dark:hover:bg-gray-600">
-                  S
-                </button>
-                <button className="bg-gray-300 dark:bg-gray-700 text-gray-700 dark:text-white py-2 px-4 rounded-full font-bold mr-2 hover:bg-gray-400 dark:hover:bg-gray-600">
-                  M
-                </button>
-                <button className="bg-gray-300 dark:bg-gray-700 text-gray-700 dark:text-white py-2 px-4 rounded-full font-bold mr-2 hover:bg-gray-400 dark:hover:bg-gray-600">
-                  L
-                </button>
-                <button className="bg-gray-300 dark:bg-gray-700 text-gray-700 dark:text-white py-2 px-4 rounded-full font-bold mr-2 hover:bg-gray-400 dark:hover:bg-gray-600">
-                  XL
-                </button>
-                <button className="bg-gray-300 dark:bg-gray-700 text-gray-700 dark:text-white py-2 px-4 rounded-full font-bold mr-2 hover:bg-gray-400 dark:hover:bg-gray-600">
-                  XXL
-                </button>
-              </div>
-            </div>
-            <div>
-              <span className="font-bold text-gray-700 dark:text-gray-300">
-                Product Description:
-              </span>
-              <p className="text-gray-600 dark:text-gray-300 text-sm mt-2">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed sed
-                ante justo. Integer euismod libero id mauris malesuada
-                tincidunt. Vivamus commodo nulla ut lorem rhoncus aliquet. Duis
-                dapibus augue vel ipsum pretium, et venenatis sem blandit.
-                Quisque ut erat vitae nisi ultrices placerat non eget velit.
-                Integer ornare mi sed ipsum lacinia, non sagittis mauris
-                blandit. Morbi fermentum libero vel nisl suscipit, nec tincidunt
-                mi consectetur.
+          <div className="md:flex-1 md:border-l-2 border-[#C6C3AE] bg-[#EEECDE] p-6 relative">
+            <div
+              className={
+                "md:absolute md:z-2 md:bg-contain md:h-full md:w-full md:bg-no-repeat md:bg-[url(./assets/12.png)] top-0 right-0 "
+              }
+            ></div>
+            <div className="flex flex-col relative h-full">
+              <h1 className="relative z-1 md:text-3xl lg:text-5xl font-bold text-gray-800 mb-2">
+                {product.title}
+              </h1>
+              <p className="relative text-gray-600 dark:text-gray-300 md:text-2xl lg:text-4xl z-1 mb-4">
+                {product.description}
               </p>
+
+              <div className="relative flex justify-center">
+                <p className="items-center flex md:text-3xl mr-6 lg:text-4xl 2xl:text-6xl">
+                  {product.price}$
+                </p>
+                <button onClick={() => handleAdd(product)} className="bg-[#54755A] p-4 rounded-3xl  md:text-3xl text-white lg:text-4xl 2xl:text-6xl">
+                  add to cart
+                </button>
+              </div>
             </div>
           </div>
         </div>

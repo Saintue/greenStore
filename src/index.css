@@ -8,5 +8,5 @@ body {
 }
 
 .active{
-  @apply bg-blue-200 md:text-blue-700 md:bg-white  dark:bg-blue-700;
+  @apply bg-blue-200 text-black;
 }

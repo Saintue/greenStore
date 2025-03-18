@@ -20,9 +20,7 @@ function CalculatorPage() {
     return <div>{errors[0]}</div>;
   }
   return (
-    <div className="w-full max-w-[1000px]">
-      <ProductsTable products={products}></ProductsTable>
-      <h1 className="ml-5">Cart</h1>
+    <div className="w-full h-full bg-[url(./assets/6.png)] bg-no-repeat bg-cover justify-center flex">
       <Cart></Cart>
     </div>
   );

@@ -5,22 +5,42 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import PageNotFound from "./pages/PageNotFound.tsx";
 import CalculatorPage from "./pages/CalculatorPage.tsx";
 import ProductPage from "./pages/ProductPage.tsx";
+import SignInPage from "./pages/SignInPage.tsx";
+import SignUpPage from "./pages/SignUpPage.tsx";
+import {useEffect} from "react";
+import {useAuthStore} from "./stores/authStore.ts";
+import ProtectedRoutes from "./utils/ProtectedRoutes.tsx";
+import ProtectedAuth from "./utils/ProtectedAuth.tsx";
 
 function App() {
-  return (
-    <div className="w-full h-full bg-amber-200">
-      <Router>
-        <Routes>
-          <Route path="/" element={<MainLayout />}>
-            <Route path="/" element={<MainPage />}></Route>
-            <Route path="/products/:id" element={<ProductPage />}></Route>
-            <Route path="/calculator" element={<CalculatorPage />}></Route>
-            <Route path="*" element={<PageNotFound />}></Route>
+  const store = useAuthStore(state => state);
+  useEffect(() => {
+    if (localStorage.getItem('token')) {
+      store.checkAuth()
+    } else {store.setLoading(false);}
+  }, [])
+  if (store.isLoading){
+    return <div>Loading...</div>;
+  }
+  return (<div className="bg-cover size-full bg-no-repeat bg-center bg-[url(./assets/2.png)]">
+    <Router>
+      <Routes>
+        <Route path="/" element={<MainLayout/>}>
+          <Route path="/" element={<MainPage/>}></Route>
+          <Route path="/products/:id" element={<ProductPage/>}></Route>
+
+          <Route path="/calculator" element={<CalculatorPage/>}></Route>
+          <Route element={<ProtectedAuth/>}>
+          <Route path="/signup" element={<SignUpPage/>}></Route>
+          <Route path="/signin" element={<SignInPage/>}></Route>
           </Route>
-        </Routes>
-      </Router>
-    </div>
-  );
+          <Route path="*" element={<PageNotFound/>}></Route>
+        </Route>
+      </Routes>
+    </Router>
+  </div>
+)
+  ;
 }
 
 export default App;

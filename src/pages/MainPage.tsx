@@ -22,7 +22,8 @@ function MainPage() {
     return <div>{errors[0]}</div>;
   }
   return (
-    <div className="w-full">
+      <div className="w-full h-full bg-[url(./assets/6.png)] bg-no-repeat bg-cover justify-center flex">
+          <div className="flex justify-between flex-col h-full w-full max-w-[1500px]">
       <div className="flex flex-row items-center justify-center w-full flex-wrap">
         {products.map((product) => (
           <ProductCard product={product}></ProductCard>
@@ -34,7 +35,8 @@ function MainPage() {
       >
         Load More...
       </button>
-    </div>
+      </div>
+      </div>
   );
 }
 export default MainPage;
