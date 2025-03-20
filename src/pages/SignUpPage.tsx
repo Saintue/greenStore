@@ -104,7 +104,7 @@ function SignUpPage() {
                             <p className="text-sm font-light text-black text-center">
                                 Already have an account?{" "}
                                 <Link
-                                    to="/signin"
+                                    to="/shopCalculator/signin"
                                     className="font-medium text-[#525E3C] hover:underline"
                                 >
                                     Login here

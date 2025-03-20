@@ -87,7 +87,7 @@ return (
         <p className="text-sm font-light text-black text-center">
           Dont have an account?{" "}
           <NavLink
-            to="/signup"
+            to="/shopCalculator/signup"
             className={
               "font-medium text-[#525E3C] hover:underline"
             }

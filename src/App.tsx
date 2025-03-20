@@ -24,14 +24,14 @@ function App() {
   return (<div className="bg-cover size-full bg-no-repeat bg-center bg-[url(./assets/2.png)]">
     <Router>
       <Routes>
-        <Route path="/" element={<MainLayout/>}>
-          <Route path="/" element={<MainPage/>}></Route>
-          <Route path="/products/:id" element={<ProductPage/>}></Route>
+        <Route path="/shopCalculator" element={<MainLayout/>}>
+          <Route path="/shopCalculator/" element={<MainPage/>}></Route>
+          <Route path="products/:id" element={<ProductPage/>}></Route>
 
-          <Route path="/calculator" element={<CalculatorPage/>}></Route>
+          <Route path="/shopCalculator/calculator" element={<CalculatorPage/>}></Route>
           <Route element={<ProtectedAuth/>}>
-          <Route path="/signup" element={<SignUpPage/>}></Route>
-          <Route path="/signin" element={<SignInPage/>}></Route>
+          <Route path="signup" element={<SignUpPage/>}></Route>
+          <Route path="signin" element={<SignInPage/>}></Route>
           </Route>
           <Route path="*" element={<PageNotFound/>}></Route>
         </Route>
