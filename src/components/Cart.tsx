@@ -15,14 +15,14 @@ function Cart() {
       <table className="w-full text-sm text-left rtl:text-right text-gray-500">
         <thead className="text-xs text-white text-center uppercase bg-[#54755A]">
           <tr>
-            <th className="border-r-2 border-b-[6px] border-[#C6C3AE] md:w-60">Product Name</th>
+            <th className="border-r-2 border-b-[6px] border-[#C6C3AE] md:w-60 rounded-tl-2xl">Product Name</th>
             <th className="border-r-2 border-b-[6px] border-[#C6C3AE] md:w-36">
               price
             </th>
             <th className="border-r-2 border-b-[6px] border-[#C6C3AE] md:w-36 h-10 p-2">
               count
             </th>
-            <th className="border-b-[6px] border-[#C6C3AE] md:w-36">total price</th>
+            <th className="border-b-[6px] border-[#C6C3AE] md:w-36 rounded-tr-2xl">total price</th>
           </tr>
         </thead>
         <tbody className={"text-xs text-gray-700 uppercase"}>
@@ -39,19 +39,19 @@ function Cart() {
           ) : (
             products.map((product: CartProduct, index: number) => (
               <tr className="text-center">
-                <td className={`h-20 bg-white border-2 border-[#C6C3AE]`}>
+                <td className={`h-20 bg-white border-2 border-[#C6C3AE] p-2`}>
                   {product.title}
                 </td>
-                <td className="bg-white border-2 border-[#C6C3AE]">
+                <td className="bg-white border-2 border-[#C6C3AE] p-2">
                   {product.price}
                 </td>
-                <td className="bg-white border-2 border-[#C6C3AE]">
+                <td className="bg-white border-2 border-[#C6C3AE] p-2">
                   {product.count}
                 </td>
                 {index == 0 ? (
                     <td
                     rowSpan={products.length}
-                    className="bg-white border-2 border-[#C6C3AE] w-2"
+                    className="bg-white border-2 border-[#C6C3AE] w-2 p-2"
                   >
                     {index == 0
                       ? products

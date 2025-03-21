@@ -9,7 +9,7 @@ export interface AuthStore {
     setAuth: (bool: boolean) => void;
     setLoading: (bool: boolean) => void;
     login:(email: string, password: string) => Promise<void>;
-    registration: (email:string, password: string) => void;
+    registration: (email:string, password: string) => Promise<void>;
     logout: () => void;
     checkAuth: () => void;
 }

@@ -10,6 +10,7 @@ import SignUpPage from "./pages/SignUpPage.tsx";
 import {useEffect} from "react";
 import {useAuthStore} from "./stores/authStore.ts";
 import ProtectedAuth from "./utils/ProtectedAuth.tsx";
+import ProtectedRoutes from "./utils/ProtectedRoutes.tsx";
 
 function App() {
   const store = useAuthStore(state => state);
@@ -27,8 +28,9 @@ function App() {
         <Route path="/shopCalculator" element={<MainLayout/>}>
           <Route path="/shopCalculator/" element={<MainPage/>}></Route>
           <Route path="products/:id" element={<ProductPage/>}></Route>
-
+          <Route element={<ProtectedRoutes/>}>
           <Route path="/shopCalculator/calculator" element={<CalculatorPage/>}></Route>
+          </Route>
           <Route element={<ProtectedAuth/>}>
           <Route path="signup" element={<SignUpPage/>}></Route>
           <Route path="signin" element={<SignInPage/>}></Route>

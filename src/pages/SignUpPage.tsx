@@ -15,10 +15,14 @@ function SignUpPage() {
         formState: { errors },
     } = useForm<Signup>({});
     const submit: SubmitHandler<Signup> = (data) => {
-        authStore.registration(data.email,data.password)
+        toast.promise(authStore.registration(data.email,data.password),{
+            loading: 'Loading',
+            success: 'Sign up success',
+            error: 'Failed sign up',
+        })
     };
     const error: SubmitErrorHandler<Signup> = () => {
-        toast.error("Error signing up");
+        toast.error("Error sign up");
     };
 
     function validatePassword(password: string) {
