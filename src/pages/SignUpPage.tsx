@@ -15,10 +15,14 @@ function SignUpPage() {
         formState: { errors },
     } = useForm<Signup>({});
     const submit: SubmitHandler<Signup> = (data) => {
-        authStore.registration(data.email,data.password)
+        toast.promise(authStore.registration(data.email,data.password),{
+            loading: 'Loading',
+            success: 'Sign up success',
+            error: 'Failed sign up',
+        })
     };
     const error: SubmitErrorHandler<Signup> = () => {
-        toast.error("Error signing up");
+        toast.error("Error sign up");
     };
 
     function validatePassword(password: string) {
@@ -104,7 +108,7 @@ function SignUpPage() {
                             <p className="text-sm font-light text-black text-center">
                                 Already have an account?{" "}
                                 <Link
-                                    to="/signin"
+                                    to="/shopCalculator/signin"
                                     className="font-medium text-[#525E3C] hover:underline"
                                 >
                                     Login here

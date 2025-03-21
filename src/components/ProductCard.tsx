@@ -24,7 +24,7 @@ function ProductCard({ product }: { product: Product }) {
       <div className={"flex-1"}>
         <div className="flex justify-center">
           <NavLink
-            to={`/products/${product.id}`}
+            to={`/shopCalculator/products/${product.id}`}
             className={"mx-4 flex h-full text-center"}
           >
             {product.title.substring(0, 40) + "..."}

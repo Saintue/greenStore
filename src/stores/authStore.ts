@@ -46,8 +46,10 @@ export const useAuthStore = create<AuthStore>((set, get) => ({
             localStorage.setItem("token", res.data.accessToken);
             get().setAuth(true);
             get().setUser(res.data.user);
+            return Promise.resolve();
         } catch (e) {
             console.log(e);
+            return Promise.reject();
         }
     },
 
