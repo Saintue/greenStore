@@ -67,20 +67,20 @@ function ProductPage() {
                 "md:absolute md:z-2 md:bg-contain md:h-full md:w-full md:bg-no-repeat md:bg-[url(./assets/12.png)] top-0 right-0 "
               }
             ></div>
-            <div className="flex flex-col relative h-full">
-              <h1 className="relative z-1 md:text-3xl lg:text-5xl font-bold text-gray-800 mb-2">
-                {product.title}
+            <div className="flex flex-col relative h-full md:justify-between">
+              <h1 className="relative z-1 text-[clamp(0.875rem,3vw,2.8rem)] font-bold font-balsamiq text-center px-6">
+                {product.title.trim().split(/\s+/).slice(0, 5).join(' ')}
               </h1>
-              <p className="relative text-gray-600 dark:text-gray-300 md:text-2xl lg:text-4xl z-1 mb-4">
+              <p className="my-10 relative text-[clamp(0.875rem,2vw,1.8rem)] font-medium z-1 md:my-20 px-8 text-justify">
                 {product.description}
               </p>
 
-              <div className="relative flex justify-center">
-                <p className="items-center flex md:text-3xl mr-6 lg:text-4xl 2xl:text-6xl">
-                  {product.price}$
+              <div className="justify-center relative flex">
+                <p className="items-center flex text-[clamp(0.875rem,3vw,5rem)] mr-10 ml-2">
+                  {product.price.toFixed(2)}$
                 </p>
-                <button onClick={() => handleAdd(product)} className="bg-[#54755A] p-4 rounded-3xl  md:text-3xl text-white lg:text-4xl 2xl:text-6xl">
-                  add to cart
+                <button onClick={() => handleAdd(product)} className="text-[24px] bg-[#54755A] p-4 rounded-3xl text-white md:text-[clamp(0.875rem,3vw,5rem)]">
+                  Add to cart
                 </button>
               </div>
             </div>
