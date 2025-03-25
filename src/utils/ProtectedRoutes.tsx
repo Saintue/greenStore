@@ -5,9 +5,12 @@ import toast from "react-hot-toast";
 
 function ProtectedRoutes(){
     useEffect(() => {
-        toast.error("sign in first")
+        if(!isAuth) {
+            toast.error("sign in first")
+        }
+
     }, []);
     const isAuth = useAuthStore(state => state.isAuth)
-    return isAuth?<Outlet/> : <Navigate to="/shopCalculator/signin"/>
+    return isAuth?<Outlet/> : <Navigate to="/greenStore/signin"/>
 }
 export default ProtectedRoutes;

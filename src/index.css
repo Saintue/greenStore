@@ -6,6 +6,9 @@ body {
   height: 100%;
   width: 100%;
 }
+body{
+  @apply font-Montserrat;
+}
 
 .active{
   @apply bg-blue-200 text-black;
